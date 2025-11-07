@@ -37,15 +37,20 @@ public class DepartamentoService implements IDepartamentoService {
     @Override
     public String updateById(Integer id, Departamento departamento) {
         Optional<Departamento> departamento1= departamentoRepository.findById(id);
+
         if(departamento1.isPresent()){
-            departamentoRepository.save(departamento);
-            return("Departamento actualizado");
+            Departamento departamentoModificado= departamento1.get();
+            //Modificar solo los atributos que se deben modificar, m2 y precio
+            try {
+                departamentoModificado.setM2(departamento.getM2());
+                departamentoModificado.setPrecio(departamento.getPrecio());
+                departamentoRepository.save(departamentoModificado);
+                return ("Departamento actualizado");
+            } catch (Exception e) {
+                return "Tienes que modificar todos los campos excepto el id";
+            }
         }else{
             return "No esta ese departamento";
         }
-
-
     }
-
-
 }
