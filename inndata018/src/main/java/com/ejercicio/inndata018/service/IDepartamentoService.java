@@ -12,4 +12,5 @@ public interface IDepartamentoService {
     public Departamento create(Departamento departamento);
     public Departamento update(Departamento departamento);
     public String updateById(Integer id, Departamento departamento);
+    public String delete(Integer id);
 }

@@ -40,4 +40,9 @@ public class DepartamentoController {
     public String updateById(@PathVariable Integer id, @RequestBody Departamento departamento){
         return departamentoService.updateById(id,departamento);
     }
+
+    @DeleteMapping("/departamentos")
+    public String delete(@PathParam("id") Integer id){
+        return departamentoService.delete(id);
+    }
 }
