@@ -45,4 +45,21 @@ public class DepartamentoController {
     public String delete(@PathParam("id") Integer id){
         return departamentoService.delete(id);
     }
+
+    @GetMapping("/departamentosPrecio")
+    public List<Departamento> findByPrecio(@PathParam("precio") Double precio){
+        return departamentoService.findByPrecio(precio);
+    }
+
+    @GetMapping("/departamentosPrecioM2")
+    public List<Departamento> findByM2Precio(@PathParam("m2") Integer m2, @PathParam("precio") Double precio){
+        return departamentoService.findByM2Precio(m2,precio);
+    }
+
+    @GetMapping("/departamentos/queryprecio")
+    public List<Departamento> m2AndPrecio(@PathParam("m2") Integer m2,@PathParam("precio") Double precio){
+        return departamentoService.m2AndPrecio(m2,precio);
+    }
+
+
 }

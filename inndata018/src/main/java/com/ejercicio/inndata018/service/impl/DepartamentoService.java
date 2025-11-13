@@ -66,4 +66,21 @@ public class DepartamentoService implements IDepartamentoService {
             return "No hay tal departamento";
         }
     }
+
+    @Override
+    public List<Departamento> findByPrecio(Double precio) {
+        return departamentoRepository.findByPrecioGreaterThan(precio);
+    }
+
+    @Override
+    public List<Departamento> findByM2Precio(Integer m2, Double precio) {
+        return departamentoRepository.findByM2LessThanEqualAndPrecioGreaterThanEqual(m2,precio);
+    }
+
+    @Override
+    public List<Departamento> m2AndPrecio(Integer m2, Double precio) {
+        return departamentoRepository.m2AndPrecio(m2,precio);
+    }
+
+
 }
