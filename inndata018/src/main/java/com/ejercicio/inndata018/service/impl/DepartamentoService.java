@@ -54,6 +54,7 @@ public class DepartamentoService implements IDepartamentoService {
         }
     }
 
+
     @Override
     public String delete(Integer id) {
         Optional<Departamento> departamento= departamentoRepository.findById(id);
@@ -80,6 +81,10 @@ public class DepartamentoService implements IDepartamentoService {
     @Override
     public List<Departamento> m2AndPrecio(Integer m2, Double precio) {
         return departamentoRepository.m2AndPrecio(m2,precio);
+    }
+
+    public int suma(int num1, int num2){
+        return num1 + num2;
     }
 
 
