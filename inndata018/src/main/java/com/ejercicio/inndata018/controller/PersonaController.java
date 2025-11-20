@@ -1,12 +1,11 @@
 package com.ejercicio.inndata018.controller;
 
-import com.ejercicio.inndata018.entity.Persona;
-import com.ejercicio.inndata018.model.PersonaDto;
+import com.ejercicio.inndata018.model.request.PersonaRequest;
+import com.ejercicio.inndata018.model.response.PersonaResponse;
 import com.ejercicio.inndata018.service.impl.PersonaService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +15,11 @@ public class PersonaController {
     @Autowired
     PersonaService personaService;
     @GetMapping("/personas")
-    public List<PersonaDto> readAll(){
+    public List<PersonaResponse> readAll(){
         return personaService.readAll();
+    }
+    @PutMapping("/personas")
+    public PersonaResponse update(@PathParam("id") Integer id, @RequestBody PersonaRequest personaRequest){
+        return personaService.update(id,personaRequest);
     }
 }
