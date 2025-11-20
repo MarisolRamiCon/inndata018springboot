@@ -32,15 +32,20 @@ public class PersonaService implements IPersonaService {
     @Override
     public PersonaResponse update(Integer id, PersonaRequest personaRequest) {
         Optional<Persona> persona= personaRepository.findById(id);
+       // PersonaResponse personaResponse= new PersonaResponse();
+        Persona persona1 = new Persona();
+
         if(persona.isPresent()){
-            Persona persona2= persona.get();
-            Persona personaResponse= new Persona();
-            personaResponse.setId(id);
-            personaResponse.setNombre(personaRequest.getNombre());
-            personaResponse.setEdad(personaRequest.getEdad());
-            personaResponse.setIdDepartamento(persona2.getIdDepartamento());
-            personaRepository.save(personaResponse);
+            persona1= persona.get();
+            persona1.setNombre(personaRequest.getNombre());
+            persona1.setEdad(personaRequest.getEdad());
+            persona1=personaRepository.save(persona1);
+
+            return new PersonaResponse(id,persona1.getNombre(),persona1.getEdad(),
+                    persona1.getIdDepartamento().getId());
+        }else {
+            return new PersonaResponse();
         }
-        return new PersonaResponse(id,personaRequest.getNombre(),personaRequest.getEdad(),persona.get().getIdDepartamento().getId());
+
     }
 }
